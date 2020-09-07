@@ -1,0 +1,17 @@
+name: "Linode Authenticator"
+description: 'updates kube configuration for the Linode CLI'
+inputs:
+  LINODE_TOKEN:
+    required: true
+    description: "Your Linode CLI token"
+  CLUSTER_NAME:
+    required: false
+    description: "The name of the Linode Cluster (i.e. lke1234)"
+
+branding:
+  color: 'green'
+  icon: 'server'
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
