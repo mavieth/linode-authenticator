@@ -1,0 +1,30 @@
+name: "Test Linode Authenticator"
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build-with-cluster-name:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+        with:
+          fetch-depth: '0'
+
+      - name: install npm packages
+        run: npm install
+
+      - name: linode authenticate
+        uses: ./
+        with:
+          LINODE_TOKEN: ${{secrets.LINODE_TOKEN}}
+          CLUSTER_NAME: lke7649
+
+      - name: bump version and push tag
+        uses: anothrNick/github-tag-action@1.17.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true

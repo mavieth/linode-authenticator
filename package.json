@@ -1,0 +1,43 @@
+{
+ "name": "linode-authenticator",
+ "version": "1.0.0",
+ "description": "Authenticate with linode kubernetes clusters.",
+ "license": "MIT",
+ "repository": "mavieth/linode-authenticator",
+ "author": {
+  "name": "mavieth",
+  "email": "mavieth@gmail.com",
+  "url": "https://github.com/mavieth"
+ },
+ "engines": {
+  "node": ">=8"
+ },
+ "xo": {
+  "ignore": "/dist/**"
+ },
+ "scripts": {
+  "lint": "xo index.js",
+  "build": "ncc build index.js -o dist --source-map",
+  "start-local": "ncc build index.js -o dist --source-map && act --secret-file .github/secrets.env",
+  "start": "npm install && rm -rf dist && npm run build"
+ },
+ "files": [
+  "index.js"
+ ],
+ "keywords": [
+  "linode-authenticator",
+  "github-action"
+ ],
+ "dependencies": {
+  "@actions/core": "^1.2.4",
+  "@actions/github": "^4.0.0",
+  "@kubernetes/client-node": "^0.12.0",
+  "@linode/api-v4": "^0.32.0",
+  "js-base64": "^3.4.5",
+  "kubernetes-client": "^9.0.0"
+ },
+ "devDependencies": {
+  "@vercel/ncc": "^0.23.0",
+  "xo": "^0.33.0"
+ }
+}
