@@ -3,8 +3,9 @@ default:
 	act --secret-file .github/secrets.env
 
 release:
+	npm run build
 	git add .
-	git commit -m 'Release'
+	git commit -m 'Release #major'
 	git push
 
 reset:
